@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <header>
-      <img alt="Vue logo" src="./assets/logo.png">
+<!--      <img alt="Vue logo" src="./assets/logo.png">-->
       <h1 @click="toggleViewMode">🎯 可爱的网页</h1>
       <p class="subtitle">点击标题切换视图模式</p>
     </header>
