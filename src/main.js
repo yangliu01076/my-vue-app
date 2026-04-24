@@ -6,7 +6,7 @@ Vue.config.productionTip = false
 
 // 创建 axios 实例
 const api = axios.create({
-  baseURL: 'http://localhost:8081',
+  baseURL: 'http://127.0.0.1:8081',
   timeout: 10000, // 超时时间
   headers: {
     'Content-Type': 'application/json'
