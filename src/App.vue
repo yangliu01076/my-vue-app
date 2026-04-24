@@ -2,19 +2,26 @@
   <div id="app">
     <header>
       <img alt="Vue logo" src="./assets/logo.png">
-      <h1 @click="toggleViewMode">🎯 Vue 2 学习项目</h1>
+      <h1 @click="toggleViewMode">🎯 可爱的网页</h1>
       <p class="subtitle">点击标题切换视图模式</p>
     </header>
 
     <main>
       <!-- 模式选择器 -->
       <div class="mode-selector">
+
         <button
-            :class="{ active: currentMode === 'welcome' }"
-            @click="switchMode('welcome')"
+            :class="{ active: currentMode === 'mood' }"
+            @click="switchMode('mood')"
         >
-          🏠 欢迎页面
+          🎉 心情记录
         </button>
+<!--        <button-->
+<!--            :class="{ active: currentMode === 'welcome' }"-->
+<!--            @click="switchMode('welcome')"-->
+<!--        >-->
+<!--          🏠 欢迎页面-->
+<!--        </button>-->
         <button
             :class="{ active: currentMode === 'demo' }"
             @click="switchMode('demo')"
@@ -81,6 +88,11 @@
           </div>
         </div>
 
+        <!-- 心情记录 -->
+        <div v-else-if="currentMode === 'mood'" class="mode-content mood-mode">
+          <MoodTracker/>
+        </div>
+
         <!-- 信息模式 -->
         <div v-else-if="currentMode === 'info'" class="mode-content info-mode">
           <div class="info-card">
@@ -112,8 +124,15 @@
           <div class="quick-links">
             <h3>🔗 快速链接</h3>
             <div class="links">
-              <router-link to="/" class="link-btn">🏠 首页</router-link>
-              <router-link to="/about" class="link-btn">📖 关于</router-link>
+              <button
+                  :class="{ active: currentMode === 'mood' }"
+                  @click="switchMode('mood')"
+                  class="link-btn"
+              >
+                🎉 心情记录
+              </button>
+<!--              <router-link to="/" class="link-btn">🏠 首页</router-link>-->
+<!--              <router-link to="/about" class="link-btn">📖 关于</router-link>-->
               <a href="#" @click.prevent="showMessage" class="link-btn">💬 弹出消息</a>
               <button @click="showTime" class="link-btn">🕐 显示时间</button>
             </div>
@@ -135,16 +154,18 @@
 <script>
 import HelloWorld from './components/HelloWorld.vue'
 import MyFirstComponent from './components/MyFirstComponent.vue'
+import MoodTracker from './components/MoodTracker.vue'
 
 export default {
   name: 'App',
   components: {
     HelloWorld,
-    MyFirstComponent
+    MyFirstComponent,
+    MoodTracker
   },
   data() {
     return {
-      currentMode: 'welcome', // welcome, demo, info
+      currentMode: 'mood', // welcome, demo, info
       counter: 0,
       colors: ['#42b983', '#3498db', '#e74c3c', '#f39c12', '#9b59b6'],
       selectedColor: '#42b983',
@@ -215,7 +236,7 @@ export default {
 
     // 显示消息
     showMessage() {
-      alert(`Vue 方法调用成功！\n当前模式: ${this.modeNames[this.currentMode]}`)
+      alert(`🎉 恭喜你，点击了标题！\n当前模式: ${this.modeNames[this.currentMode]}`)
     },
 
     showTime() {
