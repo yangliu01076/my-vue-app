@@ -207,7 +207,7 @@ export default {
 
     // 点击标题循环切换模式
     toggleViewMode() {
-      const modes = ['welcome', 'demo', 'info']
+      const modes = ['mood', 'demo', 'info']
       const currentIndex = modes.indexOf(this.currentMode)
       const nextIndex = (currentIndex + 1) % modes.length
       this.currentMode = modes[nextIndex]
