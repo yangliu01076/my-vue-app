@@ -26,7 +26,7 @@
             :class="{ active: currentMode === 'demo' }"
             @click="switchMode('demo')"
         >
-          🎮 演示组件
+          🎮 小互动
         </button>
         <button
             :class="{ active: currentMode === 'info' }"
@@ -57,6 +57,21 @@
         <div v-else-if="currentMode === 'demo'" class="mode-content demo-mode">
           <MyFirstComponent/>
 
+          <!-- 颜色选择器示例 -->
+          <div class="demo-card">
+            <h4>颜色选择器</h4>
+            <div class="color-picker">
+              <div
+                  v-for="color in colors"
+                  :key="color"
+                  :class="['color-option', { selected: selectedColor === color }]"
+                  :style="{ backgroundColor: color }"
+                  @click="selectColor(color)"
+              ></div>
+            </div>
+            <p>当前颜色: <span :style="{ color: selectedColor }">{{ selectedColor }}</span></p>
+          </div>
+
           <div class="extra-demos">
             <h3>🎯 更多示例</h3>
 
@@ -69,21 +84,6 @@
                 <button @click="increment">+</button>
               </div>
               <button @click="resetCounter" class="reset-btn">重置</button>
-            </div>
-
-            <!-- 颜色选择器示例 -->
-            <div class="demo-card">
-              <h4>颜色选择器</h4>
-              <div class="color-picker">
-                <div
-                    v-for="color in colors"
-                    :key="color"
-                    :class="['color-option', { selected: selectedColor === color }]"
-                    :style="{ backgroundColor: color }"
-                    @click="selectColor(color)"
-                ></div>
-              </div>
-              <p>当前颜色: <span :style="{ color: selectedColor }">{{ selectedColor }}</span></p>
             </div>
           </div>
         </div>

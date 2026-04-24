@@ -1,7 +1,7 @@
 <template>
   <div class="my-first-component">
-    <h1>🎉 我的第一个 Vue 组件！</h1>
-    <p>这是用 IDEA 创建的 Vue 组件</p>
+    <h1>🎉 哪里不喜欢就改哪里 </h1>
+    <p>比如，改改主题色</p>
 
     <div class="demo">
       <p>计数器: {{ count }}</p>
