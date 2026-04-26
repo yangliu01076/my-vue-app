@@ -2,7 +2,7 @@
   <div id="app">
     <header>
 <!--      <img alt="Vue logo" src="./assets/logo.png">-->
-      <h1 @click="toggleViewMode">🎯 可爱的网页</h1>
+      <h1 class="cute-header" @click="toggleViewMode">🎯 可爱的网页</h1>
       <p class="subtitle">点击标题切换视图模式</p>
     </header>
 
@@ -174,8 +174,9 @@ export default {
       createdDate: new Date().toLocaleDateString(),
       modeNames: {
         welcome: '欢迎模式',
-        demo: '演示模式',
-        info: '信息模式'
+        demo: '小互动',
+        info: '项目信息',
+        mood: '心情记录'
       }
     }
   },
@@ -294,7 +295,30 @@ export default {
 <style>
 /* CSS 变量，用于动态主题色 */
 :root {
-  --primary-color: #42b983;
+  /* 可爱风格的主色调 */
+  --primary-color: #42b983;        /* Vue绿色主色调 */
+  --primary-light: #85d1ab;        /* 浅绿色 */
+  --primary-dark: #2a7a58;         /* 深绿色 */
+
+  /* 辅助颜色 */
+  --secondary-color: #e7c23e;      /* 温暖黄色 */
+  --accent-color: #6b46c1;         /* 紫色点缀 */
+  --success-color: #66cc99;        /* 绿色 */
+  --warning-color: #ff9966;        /* 橙色 */
+
+  /* 背景和文字 */
+  --background-color: #fff9fc;     /* 浅粉色背景 */
+  --text-color: #333333;           /* 主要文字颜色 */
+  --text-light: #666666;           /* 次要文字颜色 */
+
+  /* 边框和阴影 */
+  --border-color: #a8d5bb;         /* 浅绿色边框 */
+  --shadow-color: rgba(66, 185, 131, 0.15);  /* 绿色阴影 */
+  --shadow-hover: rgba(66, 185, 131, 0.25);  /* 悬停阴影 */
+
+  /* 动画效果 */
+  --transition-speed: 0.3s;
+  --border-radius: 12px;
 }
 
 #app {
@@ -325,6 +349,108 @@ header h1 {
   margin-top: 10px;
   font-size: 2.5em;
   transition: color 0.3s;
+}
+
+.cute-header {
+  /* 使用CSS变量 */
+  color: var(--primary-color);
+  font-family: 'Quicksand', 'Segoe UI', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 600;
+
+  /* 背景和边框 */
+  background-color: var(--background-color);
+  border: 3px solid var(--border-color);
+  border-radius: calc(var(--border-radius) * 2);
+
+  /* 阴影效果 */
+  box-shadow:
+      0 8px 16px var(--shadow-color),
+      inset 0 2px 4px rgba(255, 255, 255, 0.8);
+
+  /* 布局和间距 */
+  display: inline-block;
+  padding: 15px 30px;
+  margin: 20px 0;
+
+  /* 交互效果 */
+  cursor: pointer;
+  transition: all var(--transition-speed) ease;
+  position: relative;
+  overflow: hidden;
+
+  /* 文字装饰 */
+  text-shadow: 2px 2px 0 var(--primary-light);
+}
+
+/* 鼠标悬停效果 */
+.cute-header:hover {
+  transform: translateY(-5px);
+  box-shadow:
+      0 12px 24px var(--shadow-hover),
+      inset 0 2px 4px rgba(255, 255, 255, 0.9);
+  background-color: var(--primary-light, 0.1);
+  border-color: var(--primary-dark);
+}
+
+/* 点击效果 */
+.cute-header:active {
+  transform: translateY(-2px) scale(0.98);
+  transition: all 0.1s ease;
+}
+
+/* 添加可爱的装饰元素 */
+.cute-header::before,
+.cute-header::after {
+  content: '✨';
+  position: absolute;
+  color: var(--secondary-color);
+  font-size: 1.5rem;
+  opacity: 0.7;
+  animation: sparkle 2s infinite alternate;
+}
+
+.cute-header::before {
+  top: -15px;
+  left: 15px;
+}
+
+.cute-header::after {
+  bottom: -15px;
+  right: 15px;
+}
+
+@keyframes sparkle {
+  0% {
+    transform: scale(0.9) rotate(0deg);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.1) rotate(10deg);
+    opacity: 1;
+  }
+}
+
+/* 点击涟漪效果 */
+.cute-header::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--primary-color) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: width 0.6s, height 0.6s, opacity 0.6s;
+  pointer-events: none;
+}
+
+.cute-header:active::before {
+  width: 200px;
+  height: 200px;
+  opacity: 0.3;
 }
 
 header .subtitle {
